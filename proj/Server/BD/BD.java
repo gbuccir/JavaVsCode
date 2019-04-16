@@ -3,36 +3,34 @@ package Service;
 import java.sql.*;
 import Service.*;
 
+/*  Classe de conexão com o banco.
+	precisa dos drivers para fazer a conexao */
 public class BD {
-	
-	public static final MeuPreparedStatement comando;
-    public static final DAOSFilmes filmes; //um como esse para cada classe DAO
-    public static final DAOSUsuarios usuarios;
 
+	public static final MeuPreparedStatement comando;
+	public static final Usuarios usuarios;// um como esse para cada classe DAO (service)
 
 	static {
 
 		MeuPreparedStatement _comando = null;
-		DAOSFilmes _filmes = null; // um como esse para cada classe DAO
-		DAOSUsuarios _usuarios = null; 
+		Usuarios _usuarios = null; // um como esse para cada classe DAO
 
 		try {
-
-			_comando = new MeuPreparedStatement("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/baseCineRemoto", "root", "root");
+			// Driver e connection string
+			_comando = new MeuPreparedStatement("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/baseCineRemoto",
+					"root", "root");
 
 			// Connection conn =
 			// DriverManager.getConnection("jdbc:mysql://localhost:3306/baseBingo", "root",
 			// "root");
 			// PreparedStatement statement = conn.prepareStatement(null);
 			// statement.executeUpdate();
-            _filmes = new DAOSFilmes ();
-            _usuarios = new DAOSUsuarios();
+			_usuarios = new Usuarios();
 		} catch (Exception e) {
 			System.err.println("Problemas de conexao com o BD");
 		}
 
 		comando = _comando;
-		filmes = _filmes;
 		usuarios = _usuarios;
 	}
 }

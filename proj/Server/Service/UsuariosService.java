@@ -6,6 +6,8 @@ import java.util.List;
 
 public class UsuariosService extends BD {
 
+/*Metodos do Usuário */
+
 	public void cadastro(Usuarios user) throws Exception {
 		if (user != null) {
 			try {
@@ -73,20 +75,22 @@ public class UsuariosService extends BD {
 
 	public Usuarios logado(String email, String senha) throws Exception {
 
+		//Instancia do objeto
 		Usuarios userLogado = new Usuarios();
 
 		try {
 			String sql;
-
+//query que vamos rodar
 			sql = "SELECT * " + "FROM usuario where email = ? and senha = ?";
 
 			BD.comando.prepareStatement(sql);
-
+//"troca cada '?' pelo valor da variavel que queremos do banco"
 			BD.comando.setString(1, email);
 			BD.comando.setString(2, senha);
 
 			ResultSet rs = BD.comando.executeQuery();
 
+			//faz um loop para pegar todos os resultados e atribue na variavel de retorno o valor de cada coluna do banco
 			while (rs.next()) {
 
 				userLogado.setId_user(rs.getInt("id_user"));

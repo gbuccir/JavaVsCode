@@ -4,6 +4,7 @@ import java.sql.*;
 
 public class Usuarios {
 
+	//cada atributo da classe Usuario, geralmente um espelho das colunas do banco
 	private int id_user;
 	private String nome;
 	private String email;
@@ -14,6 +15,8 @@ public class Usuarios {
 	private String dataNascimento;
 	private String senha;
 	private String tipoLogin;
+
+	//Por causa das variaveis serem 'private' para guardar e retornar os valores precisa dos metodos getters e setters
 
 	public int getId_user() {
 		return id_user;
@@ -75,6 +78,9 @@ public class Usuarios {
 	public void setTipoLogin(String tipoLogin) {
 		this.tipoLogin = tipoLogin;
 	}
+
+
+	//hashCode é um metodo obrigatorio quando cria uma classe, torna um objeto unico (gera um 'rg' pro obj)
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -91,6 +97,9 @@ public class Usuarios {
 		result = prime * result + ((tipoLogin == null) ? 0 : tipoLogin.hashCode());
 		return result;
 	}
+
+
+//Equals tambem é um metodo obrigatorio, server para comparar dois obj do tipo Usuario
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -149,6 +158,8 @@ public class Usuarios {
 			return false;
 		return true;
 	}
+
+	//ToString tambem é metodo obrigatorio, retorna o obj em forma de String
 	@Override
 	public String toString() {
 		return "DBOUsuarios [id_user=" + id_user + ", nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", cidade="
@@ -156,6 +167,9 @@ public class Usuarios {
 				+ senha + ", tipoLogin=" + tipoLogin + "]";
 	}
 	
+
+
+	//Construtor, para criar um obj ja com os valores atribuidos
 	public Usuarios(String nome, String email, String cpf, String cidade, String estado, String sexo,
 			String dataNascimento, String senha, String tipoLogin) {
 		super();
@@ -175,6 +189,7 @@ public class Usuarios {
 		// TODO Auto-generated constructor stub
 	}
 	
+	//Gera um clone do objeto Usuario
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
 		// TODO Auto-generated method stub
